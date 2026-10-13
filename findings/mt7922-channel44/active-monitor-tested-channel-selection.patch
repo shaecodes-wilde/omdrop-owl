@@ -1,0 +1,25 @@
+--- a/userspace/omdrop-discoverable
++++ b/userspace/omdrop-discoverable
+@@ -142,7 +142,12 @@
+ # capture), while on 6 115 of 121 did, and the phone ACKed 100.
+ tx_channels() {  # PHY
+   local ok c order="5220 5745 2437"
+-  [ "${PROF_MODE:-}" = active-monitor ] && order=2437
++  if [ "${PROF_MODE:-}" = active-monitor ]; then
++    order=2437
++    # Only the local MT7922 rate fix makes 5 GHz injection usable.
++    [ "$(cat /sys/module/mt7921e/version 2>/dev/null)" = 7.2.5-airdrop1 ] \
++      && order="5220 5745 2437"
++  fi
+   ok=$(iw phy "$1" channels 2>/dev/null | awk '
+     /^[[:space:]]*\* [0-9]+ MHz/ { if (f && ok) print f; f = $2; ok = !/disabled/; next }
+     /No IR|Radar detection/ { ok = 0 }
+@@ -476,7 +481,7 @@
+     # From here a failure has to give Wi-Fi back, which is cmd_stop's job.
+     if ! ap=$(exclusive_up "$sta" "$phy" $freqs); then
+       cmd_stop start-failed >/dev/null
+-      [ "$PROF_MODE" = active-monitor ] && die "could not set up the active monitor $MON on channel 6" 4
++      [ "$PROF_MODE" = active-monitor ] && die "could not set up the active monitor $MON on an AirDrop channel" 4
+       die "could not start the ad-hoc interface $IBSS on any of AirDrop's channels" 4
+     fi
+   else
