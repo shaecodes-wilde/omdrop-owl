@@ -27,6 +27,7 @@ Live driver traces showed the requested 12 Mbps descriptor value (`0x4a`) on ann
 - A 3,444,343-byte HEIC photo arrived from the iPhone in about six seconds. The saved file had the expected size and fully decoded at 5712×4284.
 - Another 362,816-byte JPEG arrived after reloading the installed driver and restarting Omdrop. It fully decoded.
 - The JPEG was accepted and sent back to the same iPhone successfully in 11.92 seconds.
+- A later incoming M4A audio file (561,938 bytes, AAC, 48 kHz stereo, 34.8 seconds) completed its upload in approximately 1.15 seconds. The saved size matched the sender’s reported size, and the full audio stream decoded without errors. The recording and its filename are omitted.
 - The original PCI regression test failed both requested 12 Mbps cases before the fix and passed all twelve cases afterward. It exercised real status bookkeeping and descriptor construction, with only token allocation and DMA payload assembly stubbed.
 - Wi-Fi checks after reload/teardown had no packet loss (five packets per check). Ethernet stayed the default internet route.
 - Receiver upload-rate and timeout protections stayed enabled.
