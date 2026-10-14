@@ -1,16 +1,28 @@
-# MT7922 injected legacy rate fix: cleaned revision
+# MT7920/MT7921/MT7922 injected legacy rate fix
 
-Updated 2026-10-14. This revision addresses the injected legacy rate failure discussed in [Omdrop issue 14](https://github.com/t4t5/omdrop-owl/issues/14). It is included in the default [`master` branch of shaecodes-wilde/mt76](https://github.com/shaecodes-wilde/mt76/tree/master). It has not been accepted into upstream mt76 or released in a standard kernel.
+Updated 2026-10-14. This report covers the original cleaned fix and its later family-guard revision for the injected legacy rate failure discussed in [Omdrop issue 14](https://github.com/t4t5/omdrop-owl/issues/14). It is included in the default [`master` branch of shaecodes-wilde/mt76](https://github.com/shaecodes-wilde/mt76/tree/master). It has not been accepted into upstream mt76 or released in a standard kernel.
 
-[Exact driver revision: 02b6c9a1ef87e55f2ccf90739e5dbcab55390cc7](https://github.com/shaecodes-wilde/mt76/commit/02b6c9a1ef87e55f2ccf90739e5dbcab55390cc7), based on openwrt/mt76 `467ae2e3f190baf737e15e318906da0dc7d0ab91`.
+[Original MT7922-only driver revision: 02b6c9a1ef87e55f2ccf90739e5dbcab55390cc7](https://github.com/shaecodes-wilde/mt76/commit/02b6c9a1ef87e55f2ccf90739e5dbcab55390cc7), based on openwrt/mt76 `467ae2e3f190baf737e15e318906da0dc7d0ab91`.
 
 ## What changed since the first experiment
 
 TX status bookkeeping clears storage that overlaps `info->control.flags`, erasing `IEEE80211_TX_CTRL_RATE_INJECT` before the common descriptor builder reads it. The PCI path now saves the requested legacy hardware rate first. It uses the existing common fixed-rate setup, restores the packet's original `USE_MINRATE` flag, and replaces only the descriptor rate field.
 
-This retains the current driver's antenna/SPE handling and ACK policy. The change is restricted to MT7922 and validates the selected band and legacy rate index. Hardware encapsulation and HT/VHT requests are excluded. The local module-version marker and Omdrop channel-selection workaround are excluded from the kernel patch.
+This retains the current driver's antenna/SPE handling and ACK policy. The original cleaned change was restricted to MT7922 and validates the selected band and legacy rate index. The later family-guard revision below changes only the model selection. Hardware encapsulation and HT/VHT requests are excluded. The local module-version marker and Omdrop channel-selection workaround are excluded from the kernel patch.
 
-## Offline validation
+## Family guard revision, 2026-10-14
+
+[Driver revision `2a2f085dc1f920cabf8b8bc18686b9f974b27dac`](https://github.com/shaecodes-wilde/mt76/commit/2a2f085dc1f920cabf8b8bc18686b9f974b27dac) widens the existing guard to MT7920, MT7921 (`mt76_chip() == 0x7961`), and MT7922. The rest of the cleaned PCI fix is unchanged. There is no `is_mt7921()` helper in this source. MT7902 is deliberately excluded even though it also uses this PCI driver; removing the guard entirely would broaden scope to that card.
+
+The expanded reproducer contains 72 cases: 23 descriptor cases for each of MT7920/MT7921/MT7922, two MT7902 exclusion cases, and an unrelated-chip exclusion case. It retains rate/band validation, ordinary traffic, encapsulation and HT/VHT exclusions, flag restoration, ACK, and antenna comparisons. Synthetic 6 GHz cases exercise descriptor handling and do not establish that every chip supports that band on hardware. Logs now identify the chip for each case. The old MT7921 exclusion case has been replaced with positive MT7921 coverage.
+
+Current validation: the PCI source object and expanded test module compile without warnings against `7.2.5-3-omarchy` headers; driver and test diffs pass checkpatch with zero errors and warnings (`--no-tree --no-signoff`). A standalone check extracted the actual guard expression and its source helpers, compiled them, and checked every 16-bit chip ID; only the intended three were selected. See [build details and hashes](family-validation.json).
+
+**The expanded kernel test module has not been executed.** Loading it requires password-authenticated sudo, unavailable in this session. No live driver was replaced and no new phone transfers were performed. Exact-revision hardware confirmation remains pending. MT7920 has no hardware test evidence. The original 24-case results below are historical results for `02b6c9a1`, not pass results for this 72-case suite.
+
+The follow-up commit links the independent MT7921 report. Before a cumulative upstream submission, revise the original MT7922-only description and verify the earliest affected commit: its existing MT7922-addition `Fixes:` tag does not by itself describe the older MT7921 failure. No human DCO sign-off has been added and no upstream mailing has been made.
+
+## Earlier MT7922-only offline validation
 
 The included module compiles the selected source tree's actual PCI preparation, status bookkeeping, common TXWI builder, and rate table. Token allocation and DMA payload construction are stubbed. It does not use the running driver's internal ABI or transmit any radio traffic.
 
@@ -61,7 +73,9 @@ Timing runs from the receiver's `/Upload` handler entry to its HTTP 200 completi
 
 ## Independent evidence
 
-[t4t5 reported](https://github.com/t4t5/omdrop-owl/issues/14#issuecomment-6171706287) successful transfers in both directions, in active-monitor and shared modes, on another MT7922 variant (`14c3:0616`). That report applies to the [earlier experimental patch](../mt7922-channel44/README.md), not this cleaned revision. Independent testing of this exact cleaned revision has not yet been recorded.
+[verusferro reported](https://github.com/t4t5/omdrop-owl/issues/14#issuecomment-6177921979) successful transfers using `02b6c9a1` with the MT7922 check removed on MT7921 PCIe `14c3:7961`, `mt7921e`, CachyOS kernel 7.2.9. Only mt7921e was rebuilt; the other mt76 components stayed stock. Active monitor, channel 44, iPad: 58,976,364 bytes received in 37.0 seconds and 8,223,915 bytes sent in 20.3 seconds. Both returned HTTP 200; the received video decoded cleanly. This is independent hardware evidence for the cleaned rate fix with a different guard, not confirmation of the exact new revision.
+
+[t4t5 reported](https://github.com/t4t5/omdrop-owl/issues/14#issuecomment-6171706287) successful transfers in both directions, in active-monitor and shared modes, on another MT7922 variant (`14c3:0616`). That report applies to the [earlier experimental patch](../mt7922-channel44/README.md), not this cleaned revision. That MT7922 report remains distinct from the later MT7921 test of the cleaned revision with its guard removed.
 
 ## Reproducing the offline check
 
@@ -76,6 +90,6 @@ sudo dmesg | tail -80
 sudo rmmod mt7922_rate_test
 ```
 
-The baseline intentionally fails module initialization with `EINVAL` and logs 11 failures; it is not left loaded, so omit `rmmod` in that case. A passing patched module initializes normally and logs 24 PASS cases and `0 failures`; unload it afterward. Clean the build directory between source variants. Do not load either PCI component build into a kernel with incompatible mt76 components.
+An unpatched baseline is expected to fail module initialization with `EINVAL`; it is not left loaded, so omit `rmmod` in that case. The expanded suite is expected to log 72 PASS cases and `0 failures` on a passing family-patched tree, which has not yet been confirmed by execution; unload it afterward. Clean the build directory between source variants. Do not load either PCI component build into a kernel with incompatible mt76 components.
 
-No reboot, long-run reliability, complete current-kernel build, or additional-chip support is claimed. This work used an AI coding assistant; the patch carries `Assisted-by: LLM` as required by the selected kernel tree's guidance. A human must review it and certify the DCO before mailing it upstream.
+No reboot, long-run reliability, complete current-kernel build, MT7920 hardware support, or exact-revision hardware validation of the widened guard is claimed. This work used an AI coding assistant; the original patch carries `Assisted-by: LLM`, and the family follow-up uses `Assisted-by: Codex:gpt-6.1-sol [exec_command]` to satisfy the installed checkpatch format. A human must review it and certify the DCO before mailing it upstream.

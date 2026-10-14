@@ -86,20 +86,22 @@ static int run_case(struct mt76_dev *dev, const char *name, int band, int idx,
 			if (word == 6)
 				difference &= ~MT_TXD6_TX_RATE;
 			if (difference)
-				pr_info("mt7922_rate_test: %s word=%d got=%#x reference=%#x\n",
-					name, word, le32_to_cpu(txwi[word]),
+				pr_info("mt7922_rate_test: chip=%04x %s word=%d got=%#x reference=%#x\n",
+					mt76_chip(dev), name, word, le32_to_cpu(txwi[word]),
 					le32_to_cpu(reference[word]));
 			rc |= !!difference;
 		}
 	}
-	pr_info("mt7922_rate_test: %s fixed=%u rate=%#x expected=%u/%#x %s\n",
-		name, fixed, rate, expected_fixed, expected_rate, rc ? "FAIL" : "PASS");
+	pr_info("mt7922_rate_test: chip=%04x %s fixed=%u rate=%#x expected=%u/%#x %s\n",
+		mt76_chip(dev), name, fixed, rate, expected_fixed, expected_rate,
+		rc ? "FAIL" : "PASS");
 	kfree_skb(skb);
 	return rc;
 }
 
 static int __init mt7922_rate_test_init(void)
 {
+	static const u16 chips[] = { 0x7920, 0x7961, 0x7922 };
 	struct mt792x_dev *radio;
 	struct mt76_dev *dev;
 	struct ieee80211_hw *hw;
@@ -111,6 +113,7 @@ static int __init mt7922_rate_test_init(void)
 		.bitrates = mt76_rates + 4, .n_bitrates = 8,
 	};
 	int failed = 0;
+	unsigned int i;
 	/* OFDM 12 Mbps: mode 1, hardware rate index 10. */
 	u16 ofdm12 = FIELD_PREP(MT_TX_RATE_MODE, MT_PHY_TYPE_OFDM) |
 		     FIELD_PREP(MT_TX_RATE_IDX, 10);
@@ -125,7 +128,6 @@ static int __init mt7922_rate_test_init(void)
 	}
 	dev->bus = &bus;
 	dev->drv = &driver;
-	dev->rev = 0x7922U << 16;
 	dev->phy.hw = hw;
 	dev->phy.antenna_mask = 3;
 	hw->wiphy = wiphy;
@@ -136,45 +138,52 @@ static int __init mt7922_rate_test_init(void)
 #define CHECK(name, band, idx, flags, injected, requested, multicast, fixed, rate) \
 	failed += !!run_case(dev, name, band, idx, flags, injected, requested, \
 			     multicast, fixed, rate, 0)
-	CHECK("injected-12Mbps-2GHz", 0, 6, 0, true, true, false, true, ofdm12);
-	CHECK("injected-12Mbps-5GHz", 1, 2, 0, true, true, false, true, ofdm12);
-	CHECK("injected-multicast-12Mbps", 0, 6, 0, true, true, true, true, ofdm12);
-	CHECK("injected-6Mbps", 0, 4, 0, true, true, false, true, 0x4b);
-	CHECK("injected-54Mbps", 1, 7, 0, true, true, false, true, 0x4c);
-	CHECK("injected-CCK-short-preamble", 0, 1, IEEE80211_TX_RC_USE_SHORT_PREAMBLE,
-	      true, true, false, true, 5);
-	failed += !!run_case(dev, "8023-encapsulation-unchanged", 0, 6, 0,
-			    true, true, false, false, 0,
-			    IEEE80211_TX_CTL_HW_80211_ENCAP);
-	CHECK("invalid-band", NUM_NL80211_BANDS, 6, 0,
-	      true, true, false, false, 0);
-	failed += !!run_case(dev, "injected-minrate-flag-preserved", 0, 6, 0,
-			    true, true, false, true, ofdm12,
-			    IEEE80211_TX_CTL_USE_MINRATE);
-	failed += !!run_case(dev, "ordinary-minrate-unchanged", 0, 6, 0,
-			    false, false, false, true, 0,
-			    IEEE80211_TX_CTL_USE_MINRATE);
-	CHECK("ordinary-unicast", 0, 6, 0, false, false, false, false, 0);
-	CHECK("ordinary-multicast", 0, 6, 0, false, false, true, true, 0);
-	CHECK("injected-no-rate", 0, 6, 0, true, false, false, false, 0);
-	CHECK("requested-not-injected", 0, 6, 0, false, true, false, false, 0);
-	CHECK("negative-index", 0, -1, 0, true, true, false, false, 0);
-	CHECK("index-out-of-range", 0, 12, 0, true, true, false, false, 0);
-	CHECK("missing-band", 2, 6, 0, true, true, false, false, 0);
-	CHECK("HT-unchanged", 0, 6, IEEE80211_TX_RC_MCS, true, true, false, false, 0);
-	CHECK("VHT-unchanged", 0, 6, IEEE80211_TX_RC_VHT_MCS, true, true, false, false, 0);
-	CHECK("injected-12Mbps-6GHz", NL80211_BAND_6GHZ, 2, 0,
-	      true, true, false, true, ofdm12);
-	failed += !!run_case(dev, "noack-policy-preserved", 1, 2, 0,
-			    true, true, false, true, ofdm12,
-			    IEEE80211_TX_CTL_NO_ACK);
-	dev->phy.antenna_mask = 1;
-	CHECK("antenna-path-0-preserved", 1, 2, 0, true, true, false, true, ofdm12);
-	dev->phy.antenna_mask = 2;
-	CHECK("antenna-path-1-preserved", 1, 2, 0, true, true, false, true, ofdm12);
-	dev->phy.antenna_mask = 3;
-	dev->rev = 0x7961U << 16;
+	for (i = 0; i < ARRAY_SIZE(chips); i++) {
+		dev->rev = (u32)chips[i] << 16;
+		CHECK("injected-12Mbps-2GHz", 0, 6, 0, true, true, false, true, ofdm12);
+		CHECK("injected-12Mbps-5GHz", 1, 2, 0, true, true, false, true, ofdm12);
+		CHECK("injected-multicast-12Mbps", 0, 6, 0, true, true, true, true, ofdm12);
+		CHECK("injected-6Mbps", 0, 4, 0, true, true, false, true, 0x4b);
+		CHECK("injected-54Mbps", 1, 7, 0, true, true, false, true, 0x4c);
+		CHECK("injected-CCK-short-preamble", 0, 1, IEEE80211_TX_RC_USE_SHORT_PREAMBLE,
+		      true, true, false, true, 5);
+		failed += !!run_case(dev, "8023-encapsulation-unchanged", 0, 6, 0,
+				    true, true, false, false, 0,
+				    IEEE80211_TX_CTL_HW_80211_ENCAP);
+		CHECK("invalid-band", NUM_NL80211_BANDS, 6, 0,
+		      true, true, false, false, 0);
+		failed += !!run_case(dev, "injected-minrate-flag-preserved", 0, 6, 0,
+				    true, true, false, true, ofdm12,
+				    IEEE80211_TX_CTL_USE_MINRATE);
+		failed += !!run_case(dev, "ordinary-minrate-unchanged", 0, 6, 0,
+				    false, false, false, true, 0,
+				    IEEE80211_TX_CTL_USE_MINRATE);
+		CHECK("ordinary-unicast", 0, 6, 0, false, false, false, false, 0);
+		CHECK("ordinary-multicast", 0, 6, 0, false, false, true, true, 0);
+		CHECK("injected-no-rate", 0, 6, 0, true, false, false, false, 0);
+		CHECK("requested-not-injected", 0, 6, 0, false, true, false, false, 0);
+		CHECK("negative-index", 0, -1, 0, true, true, false, false, 0);
+		CHECK("index-out-of-range", 0, 12, 0, true, true, false, false, 0);
+		CHECK("missing-band", 2, 6, 0, true, true, false, false, 0);
+		CHECK("HT-unchanged", 0, 6, IEEE80211_TX_RC_MCS, true, true, false, false, 0);
+		CHECK("VHT-unchanged", 0, 6, IEEE80211_TX_RC_VHT_MCS, true, true, false, false, 0);
+		CHECK("injected-12Mbps-6GHz", NL80211_BAND_6GHZ, 2, 0,
+		      true, true, false, true, ofdm12);
+		failed += !!run_case(dev, "noack-policy-preserved", 1, 2, 0,
+				    true, true, false, true, ofdm12,
+				    IEEE80211_TX_CTL_NO_ACK);
+		dev->phy.antenna_mask = 1;
+		CHECK("antenna-path-0-preserved", 1, 2, 0, true, true, false, true, ofdm12);
+		dev->phy.antenna_mask = 2;
+		CHECK("antenna-path-1-preserved", 1, 2, 0, true, true, false, true, ofdm12);
+		dev->phy.antenna_mask = 3;
+	}
+	dev->rev = 0x7902U << 16;
+	CHECK("MT7902-unchanged", 0, 6, 0, true, true, false, false, 0);
+	CHECK("MT7902-5GHz-unchanged", 1, 2, 0, true, true, false, false, 0);
+	dev->rev = 0x7915U << 16;
 	CHECK("other-chip-unchanged", 0, 6, 0, true, true, false, false, 0);
+#undef CHECK
 	pr_info("mt7922_rate_test: %d failures\n", failed);
 out:
 	kfree(wiphy);
@@ -187,4 +196,4 @@ static void __exit mt7922_rate_test_exit(void) {}
 module_init(mt7922_rate_test_init);
 module_exit(mt7922_rate_test_exit);
 MODULE_LICENSE("GPL");
-MODULE_DESCRIPTION("Offline MT7922 injected legacy rate descriptor regression test");
+MODULE_DESCRIPTION("Offline MT7920/MT7921/MT7922 injected legacy rate descriptor regression test");

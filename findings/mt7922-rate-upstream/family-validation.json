@@ -1,0 +1,55 @@
+{
+  "date": "2026-10-14",
+  "driver_revision": "2a2f085dc1f920cabf8b8bc18686b9f974b27dac",
+  "source_base": "openwrt/mt76 467ae2e3f190baf737e15e318906da0dc7d0ab91 plus cleaned fix 02b6c9a1 and widened guard",
+  "kernel_headers": "7.2.5-3-omarchy",
+  "pci_object_build": {
+    "status": "passed",
+    "warnings": 0,
+    "command": "make -C /lib/modules/7.2.5-3-omarchy/build M=\"$PWD\" CONFIG_MT7921E=m mt7921/pci_mac.o"
+  },
+  "regression_module_build": {
+    "status": "passed",
+    "warnings": 0,
+    "cases": 72,
+    "command": "make -C /lib/modules/7.2.5-3-omarchy/build M=\"$PWD/reproducer\" MT76_SOURCE=/absolute/path/to/mt76 modules"
+  },
+  "regression_module_execution": {
+    "status": "not run",
+    "reason": "Password-authenticated sudo required to load module"
+  },
+  "guard_execution": {
+    "status": "passed",
+    "method": "Extract actual guard expression and is_mt7920/is_mt7922 source helpers; compile with cc -Wall -Wextra -Werror; assert selection across all 65536 chip IDs",
+    "enabled_chip_ids": [
+      "0x7920",
+      "0x7961",
+      "0x7922"
+    ]
+  },
+  "checkpatch": {
+    "driver_diff": "0 errors, 0 warnings",
+    "test_diff": "0 errors, 0 warnings",
+    "options": [
+      "--no-tree",
+      "--no-signoff"
+    ]
+  },
+  "hardware_validation": {
+    "exact_new_revision": "not performed",
+    "mt7921_report": "https://github.com/t4t5/omdrop-owl/issues/14#issuecomment-6177921979",
+    "report_revision": "02b6c9a1 with is_mt7922 guard removed",
+    "mt7920": "untested",
+    "live_driver_changed_this_session": false
+  },
+  "source_sha256": {
+    "mt7921/pci_mac.c": "5085d0dd624d723e82840f13f80080e1e7b0c6b94b1ee476e06f6a09ba5dde7e",
+    "mt76_connac.h": "fc15c5f36a5a62d354bb2420044c3d7a02b87aaeb1a0a15696a5be062e027c4e",
+    "mt76_connac_mac.c": "55a495b233d183a15c65ec7acecf737ad5e4d140241dd5980da3f8bb472491a9",
+    "tx.c": "030ce55e0b62478bef1dc97ac164327cb3c2b247e263e972ad115eb2f6f20356",
+    "mt76.h": "0cda1ca25c0d8b61602a9798e1cbcbcc41b05076997bbd2c3438232b3ce2e5a9",
+    "mac80211.c": "a7a9f878dcd3196dfb9e9a944bc476dec01b8c354120417f7f93c6bce17f52ef"
+  },
+  "test_source_sha256": "af05df46027124fdded8abcf304073d4a88b14cb7db099d61b8f5f5dc4f82464",
+  "module_sha256": "9b643e45ea02f4ea8a322a3487954bad29c14c488711f876dd028f31616dbf92"
+}
