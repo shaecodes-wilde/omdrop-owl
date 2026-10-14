@@ -1,5 +1,7 @@
 # MT7922 AirDrop findings: working transfers on channel 44
 
+This is the original October 13 experiment. The [cleaned revision and updated test report](../mt7922-rate-upstream/README.md) supersede its upstream preparation status: the cleaned PCI function has now passed hardware transfers in both modes and 24 regression cases on three source bases, and is included in [our mt76 fork's default branch](https://github.com/shaecodes-wilde/mt76/tree/master). The patch snapshots below preserve the original experiment.
+
 We found a fix that made AirDrop work both ways on one MT7922 computer. This records the patch and results already tested, so other people can inspect or reproduce them.
 
 This builds on [kmod-midori's active-monitor work (#13)](https://github.com/t4t5/omdrop-owl/pull/13) and [t4t5's integration (#24)](https://github.com/t4t5/omdrop-owl/pull/24), and addresses the MT7922 sending-rate failure discussed in [issue #14](https://github.com/t4t5/omdrop-owl/issues/14). It does not claim to fix all devices or modes in that thread.
@@ -44,10 +46,10 @@ mt7921e untested active-monitor station no yes MT7922 local rate experiment
 
 The untested hardware opt-in was enabled. These files document the working experiment; they are not an automatic installer or a merge-ready upstream kernel patch. Source/build ABI matching matters when replacing this driver, and the tested marker must not be treated as proof of support on another kernel.
 
-For an upstream submission, omit the local marker and preserve the common builder's full fixed-rate setup. Current mt76 has additional antenna/SPE handling that this older backport does not reproduce for newly forced unicast. A refinement to reuse that common setup was prepared and compiled, but additional runtime checks were set aside and it is not the hardware-tested patch linked here.
+The [cleaned revision](../mt7922-rate-upstream/README.md) removes the local marker and reuses the common builder's full fixed-rate setup, including current antenna/SPE handling. That refinement has now been compiled and executed in the offline regressions, and its matching-7.2.5 PCI function was hardware-tested. The patch files in this directory still describe the older experiment.
 
 ## Limits
 
-This is one computer and one running kernel. A reboot, longer sessions, large transfers, other kernel versions, the `14c3:0616` MT7922 variant, and other chipsets still need testing. The iOS version above is the tester's report, not an independently verified screenshot.
+For the original experiment, this report describes one computer and one running kernel. Later larger transfers, shared-mode results, and t4t5's independent `14c3:0616` report are recorded in the [updated report](../mt7922-rate-upstream/README.md). Reboot testing, longer reliability runs, a full current-kernel build, and additional-chip support remain unvalidated. The iOS version above is the tester's original report, not an independently verified screenshot.
 
 The current kernel/build artifacts, personal photos, receiver keys, sender tokens, Wi-Fi credentials, device names/addresses, and machine-specific installation scripts are not included.

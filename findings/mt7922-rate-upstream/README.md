@@ -1,6 +1,6 @@
-# MT7922 injected legacy rate fix: upstream review revision
+# MT7922 injected legacy rate fix: cleaned revision
 
-Prepared 2026-10-14. This revision addresses the injected legacy rate failure discussed in [Omdrop issue 14](https://github.com/t4t5/omdrop-owl/issues/14). It is a driver patch for review, not a released kernel fix.
+Updated 2026-10-14. This revision addresses the injected legacy rate failure discussed in [Omdrop issue 14](https://github.com/t4t5/omdrop-owl/issues/14). It is included in the default [`master` branch of shaecodes-wilde/mt76](https://github.com/shaecodes-wilde/mt76/tree/master). It has not been accepted into upstream mt76 or released in a standard kernel.
 
 [Exact driver revision: 02b6c9a1ef87e55f2ccf90739e5dbcab55390cc7](https://github.com/shaecodes-wilde/mt76/commit/02b6c9a1ef87e55f2ccf90739e5dbcab55390cc7), based on openwrt/mt76 `467ae2e3f190baf737e15e318906da0dc7d0ab91`.
 
@@ -34,13 +34,15 @@ Hardware: MT7922 PCI `14c3:7922`, subsystem `1a3b:5916`; iPhone 16 Pro Max. Kern
 
 Active-monitor mode, channel 44: the user confirmed three incoming files completed (two PNGs and one MP4, 27,391,614 bytes total). The receiver returned HTTP 200 in about 16.73 seconds, and all files fully decoded. Sending a 727,402-byte PNG returned HTTP 200 in 14.47 seconds; the user confirmed it arrived and opened on the phone.
 
-Shared mode, channel 44: the 727,402-byte PNG upload completed in 3.69 seconds and the user confirmed it arrived and opened. Wi-Fi stayed associated and passed 10/10 ping checks while Omdrop was active. An incoming 2,801,190-byte PNG completed in 4.16 seconds, fully decoded, and the user confirmed success. Teardown restored the original driver, profile, and Wi-Fi connection and removed the temporary test connection. Wi-Fi passed 10/10 ping checks after restoration; Ethernet remained the default route. Reboot validation is pending. Ethernet remained the default internet route. A temporary local Omdrop configuration allows channel-44 validation without adding channel policy to the kernel patch.
+Shared mode, channel 44: the 727,402-byte PNG upload completed in 3.69 seconds and the user confirmed it arrived and opened. Wi-Fi stayed associated and passed 10/10 ping checks while Omdrop was active. An incoming 2,801,190-byte PNG completed in 4.16 seconds, fully decoded, and the user confirmed success. These are individual transfer observations, not a performance benchmark.
+
+Teardown restored the original driver, profile, and Wi-Fi connection and removed the temporary test connection. Wi-Fi passed 10/10 ping checks after restoration; Ethernet remained the default internet route. Reboot validation is pending. A temporary local Omdrop configuration allowed channel-44 validation without adding channel policy to the kernel patch. The cleaned driver was only loaded temporarily; merging the fork does not install it on the computer.
 
 The phone's exact iOS version remains unverified; the previously supplied version string is not treated as confirmed.
 
 ## Independent evidence
 
-[t4t5 reported](https://github.com/t4t5/omdrop-owl/issues/14#issuecomment-6171706287) successful transfers in both directions, in active-monitor and shared modes, on another MT7922 variant (`14c3:0616`). That report applies to the [earlier experimental patch](../mt7922-channel44/README.md), not this cleaned revision. A retest and formal Tested-by line for this exact revision are requested separately.
+[t4t5 reported](https://github.com/t4t5/omdrop-owl/issues/14#issuecomment-6171706287) successful transfers in both directions, in active-monitor and shared modes, on another MT7922 variant (`14c3:0616`). That report applies to the [earlier experimental patch](../mt7922-channel44/README.md), not this cleaned revision. Independent testing of this exact cleaned revision has not yet been recorded.
 
 ## Reproducing the offline check
 
