@@ -36,9 +36,17 @@ Active-monitor mode, channel 44: the user confirmed three incoming files complet
 
 Shared mode, channel 44: the 727,402-byte PNG upload completed in 3.69 seconds and the user confirmed it arrived and opened. Wi-Fi stayed associated and passed 10/10 ping checks while Omdrop was active. An incoming 2,801,190-byte PNG completed in 4.16 seconds, fully decoded, and the user confirmed success. These are individual transfer observations, not a performance benchmark.
 
-Teardown restored the original driver, profile, and Wi-Fi connection and removed the temporary test connection. Wi-Fi passed 10/10 ping checks after restoration; Ethernet remained the default internet route. Reboot validation is pending. A temporary local Omdrop configuration allowed channel-44 validation without adding channel policy to the kernel patch. The cleaned driver was only loaded temporarily; merging the fork does not install it on the computer.
+Teardown restored the original driver, profile, and Wi-Fi connection and removed the temporary test connection. Wi-Fi passed 10/10 ping checks after restoration; Ethernet remained the default internet route. Reboot validation is pending. A temporary local Omdrop configuration allowed channel-44 validation without adding channel policy to the kernel patch. That initial validation loaded the cleaned driver temporarily; merging the fork does not install it automatically.
 
 The phone's exact iOS version remains unverified; the previously supplied version string is not treated as confirmed.
+
+## Persistent local setup after validation
+
+The cleaned PCI function is now installed on the test computer as DKMS `omdrop-mt7921e/7.2.5-airdrop2`, restricted to `7.2.5-3-omarchy`. Both disk and loaded modules report srcversion `D5CFC98B9B40208307ABC3F`. Omdrop uses shared mode with a persistent channel-44 Wi-Fi connection; Ethernet remains the default internet route. The older driver and profile are retained for local rollback. The boot image was inspected and contains no embedded mt7921e module. A reboot has not yet been tested.
+
+A post-install 727,402-byte PNG upload completed in 2.63 seconds and the user confirmed it arrived without issue. An incoming 63,738-byte JPEG fully decoded at 1085×814 and the user confirmed Sent. Final shared-mode Wi-Fi checks passed 10/10 pings. The setup was left enabled rather than restored to the older active-monitor experiment.
+
+A first incoming post-install file was saved intact, but the phone stayed on Sending: the receiver returned HTTP 200 and left the connection open until its 30-second idle timeout. A separate local Omdrop receiver change adds `Connection: close` after a successful upload, retaining the existing drain for a delayed closing chunk. A loopback regression reproduced the missing close response; protocol/limits checks and targeted completion/wait/port checks passed after the existing keepalive test was updated for explicit closure. The next incoming phone transfer reported Sent. This receiver change is local to the Omdrop plugin and is not part of the mt76 patch or an upstream plugin release.
 
 ## Independent evidence
 
