@@ -1,0 +1,56 @@
+{
+  "current-baseline": {
+    "module_sha256": "514a7dc34d61a106d6c713f1b3962b5ea38fa6da4f168d7d20fe9f9d80f62396",
+    "source_hashes": {
+      "mt7921/pci_mac.c": "ce8252f91716df94107d4c44de164ca4546113212f1b0f346b701cd8066af695",
+      "mt76_connac_mac.c": "55a495b233d183a15c65ec7acecf737ad5e4d140241dd5980da3f8bb472491a9",
+      "tx.c": "030ce55e0b62478bef1dc97ac164327cb3c2b247e263e972ad115eb2f6f20356",
+      "mt76.h": "0cda1ca25c0d8b61602a9798e1cbcbcc41b05076997bbd2c3438232b3ce2e5a9"
+    }
+  },
+  "current-fixed": {
+    "module_sha256": "6c890be9ed9a51b62d70aff7ef0bc1b3a72c89c837cc973168fdd2c13bef320d",
+    "source_hashes": {
+      "mt7921/pci_mac.c": "2221a70beff7c05c2f9c59c508c923a7b29aa6f497ec601d954a54cdefbb9b17",
+      "mt76_connac_mac.c": "55a495b233d183a15c65ec7acecf737ad5e4d140241dd5980da3f8bb472491a9",
+      "tx.c": "030ce55e0b62478bef1dc97ac164327cb3c2b247e263e972ad115eb2f6f20356",
+      "mt76.h": "0cda1ca25c0d8b61602a9798e1cbcbcc41b05076997bbd2c3438232b3ce2e5a9"
+    }
+  },
+  "matched-baseline": {
+    "module_sha256": "3df2fb9ea7d9cfb0f8995758672b5bfb0bcf01197004087aa3ceac646c92013b",
+    "source_hashes": {
+      "mt7921/pci_mac.c": "0351b9cb4d2f47995c42c163164d6cca990c7718cb02fefff27924e82fe8dec0",
+      "mt76_connac_mac.c": "ef1f3e51b70cbe4efd24133498f871222b14029b37c188178c94a1e6c971d0be",
+      "tx.c": "fb1cf713d14edd82b0143519d4c58e3c7ec84ef93fc97dd606cf8de72901419e",
+      "mt76.h": "2a23bdfaa0a11cd49920b4885eafb5d5c0ad5c28fa502c0366ba0771183f8a25"
+    }
+  },
+  "matched-fixed": {
+    "module_sha256": "3e8d93a2cc8e8407b3d580b5fcd66c79b07878271bf999bf8a0d68e846a7bb4d",
+    "source_hashes": {
+      "mt7921/pci_mac.c": "0cf5f9dd0d2f6f330f9cee391e17181e2797b542c8b41c0ae6132ee328bd263c",
+      "mt76_connac_mac.c": "ef1f3e51b70cbe4efd24133498f871222b14029b37c188178c94a1e6c971d0be",
+      "tx.c": "fb1cf713d14edd82b0143519d4c58e3c7ec84ef93fc97dd606cf8de72901419e",
+      "mt76.h": "2a23bdfaa0a11cd49920b4885eafb5d5c0ad5c28fa502c0366ba0771183f8a25"
+    }
+  },
+  "linux-target-baseline": {
+    "module_sha256": "5b82e4d572111ab2c9230f42df88bc84ad5da07306f0b44f94a095df671486a9",
+    "source_hashes": {
+      "mt7921/pci_mac.c": "ce8252f91716df94107d4c44de164ca4546113212f1b0f346b701cd8066af695",
+      "mt76_connac_mac.c": "55a495b233d183a15c65ec7acecf737ad5e4d140241dd5980da3f8bb472491a9",
+      "tx.c": "ae0231ee27d4ffadfe57604fd6496a763e929525608c0a8e79f0404923c255fd",
+      "mt76.h": "2f5bc1d6628e80c541b1ba8ac8efa0ac050a501b354bcad44243801c906464ee"
+    }
+  },
+  "linux-target-fixed": {
+    "module_sha256": "6851ce531d30746bdc88537a8ee4fd7aa240ed6496b8539b562c7f9ba2d813e8",
+    "source_hashes": {
+      "mt7921/pci_mac.c": "2221a70beff7c05c2f9c59c508c923a7b29aa6f497ec601d954a54cdefbb9b17",
+      "mt76_connac_mac.c": "55a495b233d183a15c65ec7acecf737ad5e4d140241dd5980da3f8bb472491a9",
+      "tx.c": "ae0231ee27d4ffadfe57604fd6496a763e929525608c0a8e79f0404923c255fd",
+      "mt76.h": "2f5bc1d6628e80c541b1ba8ac8efa0ac050a501b354bcad44243801c906464ee"
+    }
+  }
+}

@@ -1,0 +1,264 @@
+
+current-baseline (module initialization status: 0)
+mt7922_rate_test: injected-12Mbps-2GHz word=2 got=0x20 reference=0x80002020
+mt7922_rate_test: injected-12Mbps-2GHz word=3 got=0x80007800 reference=0x90007800
+mt7922_rate_test: injected-12Mbps-2GHz word=6 got=0x0 reference=0x4
+mt7922_rate_test: injected-12Mbps-2GHz word=7 got=0x200000 reference=0x20c000
+mt7922_rate_test: injected-12Mbps-2GHz fixed=0 rate=0x0 expected=1/0x4a FAIL
+mt7922_rate_test: injected-12Mbps-5GHz word=2 got=0x20 reference=0x80002020
+mt7922_rate_test: injected-12Mbps-5GHz word=3 got=0x80007800 reference=0x90007800
+mt7922_rate_test: injected-12Mbps-5GHz word=6 got=0x0 reference=0x4
+mt7922_rate_test: injected-12Mbps-5GHz word=7 got=0x200000 reference=0x20c000
+mt7922_rate_test: injected-12Mbps-5GHz fixed=0 rate=0x0 expected=1/0x4a FAIL
+mt7922_rate_test: injected-multicast-12Mbps fixed=1 rate=0x0 expected=1/0x4a FAIL
+mt7922_rate_test: injected-6Mbps word=2 got=0x20 reference=0x80002020
+mt7922_rate_test: injected-6Mbps word=3 got=0x80007800 reference=0x90007800
+mt7922_rate_test: injected-6Mbps word=6 got=0x0 reference=0x4
+mt7922_rate_test: injected-6Mbps word=7 got=0x200000 reference=0x20c000
+mt7922_rate_test: injected-6Mbps fixed=0 rate=0x0 expected=1/0x4b FAIL
+mt7922_rate_test: injected-54Mbps word=2 got=0x20 reference=0x80002020
+mt7922_rate_test: injected-54Mbps word=3 got=0x80007800 reference=0x90007800
+mt7922_rate_test: injected-54Mbps word=6 got=0x0 reference=0x4
+mt7922_rate_test: injected-54Mbps word=7 got=0x200000 reference=0x20c000
+mt7922_rate_test: injected-54Mbps fixed=0 rate=0x0 expected=1/0x4c FAIL
+mt7922_rate_test: injected-CCK-short-preamble word=2 got=0x20 reference=0x80002020
+mt7922_rate_test: injected-CCK-short-preamble word=3 got=0x80007800 reference=0x90007800
+mt7922_rate_test: injected-CCK-short-preamble word=6 got=0x0 reference=0x4
+mt7922_rate_test: injected-CCK-short-preamble word=7 got=0x200000 reference=0x20c000
+mt7922_rate_test: injected-CCK-short-preamble fixed=0 rate=0x0 expected=1/0x5 FAIL
+mt7922_rate_test: 8023-encapsulation-unchanged fixed=0 rate=0x0 expected=0/0x0 PASS
+mt7922_rate_test: invalid-band fixed=0 rate=0x0 expected=0/0x0 PASS
+mt7922_rate_test: injected-minrate-flag-preserved fixed=1 rate=0x0 expected=1/0x4a FAIL
+mt7922_rate_test: ordinary-minrate-unchanged fixed=1 rate=0x0 expected=1/0x0 PASS
+mt7922_rate_test: ordinary-unicast fixed=0 rate=0x0 expected=0/0x0 PASS
+mt7922_rate_test: ordinary-multicast fixed=1 rate=0x0 expected=1/0x0 PASS
+mt7922_rate_test: injected-no-rate fixed=0 rate=0x0 expected=0/0x0 PASS
+mt7922_rate_test: requested-not-injected fixed=0 rate=0x0 expected=0/0x0 PASS
+mt7922_rate_test: negative-index fixed=0 rate=0x0 expected=0/0x0 PASS
+mt7922_rate_test: index-out-of-range fixed=0 rate=0x0 expected=0/0x0 PASS
+mt7922_rate_test: missing-band fixed=0 rate=0x0 expected=0/0x0 PASS
+mt7922_rate_test: HT-unchanged fixed=0 rate=0x0 expected=0/0x0 PASS
+mt7922_rate_test: VHT-unchanged fixed=0 rate=0x0 expected=0/0x0 PASS
+mt7922_rate_test: injected-12Mbps-6GHz word=2 got=0x20 reference=0x80002020
+mt7922_rate_test: injected-12Mbps-6GHz word=3 got=0x80007800 reference=0x90007800
+mt7922_rate_test: injected-12Mbps-6GHz word=6 got=0x0 reference=0x4
+mt7922_rate_test: injected-12Mbps-6GHz word=7 got=0x200000 reference=0x20c000
+mt7922_rate_test: injected-12Mbps-6GHz fixed=0 rate=0x0 expected=1/0x4a FAIL
+mt7922_rate_test: noack-policy-preserved word=2 got=0x20 reference=0x80002020
+mt7922_rate_test: noack-policy-preserved word=3 got=0x80007801 reference=0x90007801
+mt7922_rate_test: noack-policy-preserved word=6 got=0x0 reference=0x4
+mt7922_rate_test: noack-policy-preserved word=7 got=0x200000 reference=0x20c000
+mt7922_rate_test: noack-policy-preserved fixed=0 rate=0x0 expected=1/0x4a FAIL
+mt7922_rate_test: antenna-path-0-preserved word=2 got=0x20 reference=0x80002020
+mt7922_rate_test: antenna-path-0-preserved word=3 got=0x80007800 reference=0x90007800
+mt7922_rate_test: antenna-path-0-preserved word=6 got=0x0 reference=0x4
+mt7922_rate_test: antenna-path-0-preserved fixed=0 rate=0x0 expected=1/0x4a FAIL
+mt7922_rate_test: antenna-path-1-preserved word=2 got=0x20 reference=0x80002020
+mt7922_rate_test: antenna-path-1-preserved word=3 got=0x80007800 reference=0x90007800
+mt7922_rate_test: antenna-path-1-preserved word=6 got=0x0 reference=0x4
+mt7922_rate_test: antenna-path-1-preserved word=7 got=0x200000 reference=0x200800
+mt7922_rate_test: antenna-path-1-preserved fixed=0 rate=0x0 expected=1/0x4a FAIL
+mt7922_rate_test: other-chip-unchanged fixed=0 rate=0x0 expected=0/0x0 PASS
+mt7922_rate_test: 11 failures
+
+current-fixed (module initialization status: 1)
+mt7922_rate_test: injected-12Mbps-2GHz fixed=1 rate=0x4a expected=1/0x4a PASS
+mt7922_rate_test: injected-12Mbps-5GHz fixed=1 rate=0x4a expected=1/0x4a PASS
+mt7922_rate_test: injected-multicast-12Mbps fixed=1 rate=0x4a expected=1/0x4a PASS
+mt7922_rate_test: injected-6Mbps fixed=1 rate=0x4b expected=1/0x4b PASS
+mt7922_rate_test: injected-54Mbps fixed=1 rate=0x4c expected=1/0x4c PASS
+mt7922_rate_test: injected-CCK-short-preamble fixed=1 rate=0x5 expected=1/0x5 PASS
+mt7922_rate_test: 8023-encapsulation-unchanged fixed=0 rate=0x0 expected=0/0x0 PASS
+mt7922_rate_test: invalid-band fixed=0 rate=0x0 expected=0/0x0 PASS
+mt7922_rate_test: injected-minrate-flag-preserved fixed=1 rate=0x4a expected=1/0x4a PASS
+mt7922_rate_test: ordinary-minrate-unchanged fixed=1 rate=0x0 expected=1/0x0 PASS
+mt7922_rate_test: ordinary-unicast fixed=0 rate=0x0 expected=0/0x0 PASS
+mt7922_rate_test: ordinary-multicast fixed=1 rate=0x0 expected=1/0x0 PASS
+mt7922_rate_test: injected-no-rate fixed=0 rate=0x0 expected=0/0x0 PASS
+mt7922_rate_test: requested-not-injected fixed=0 rate=0x0 expected=0/0x0 PASS
+mt7922_rate_test: negative-index fixed=0 rate=0x0 expected=0/0x0 PASS
+mt7922_rate_test: index-out-of-range fixed=0 rate=0x0 expected=0/0x0 PASS
+mt7922_rate_test: missing-band fixed=0 rate=0x0 expected=0/0x0 PASS
+mt7922_rate_test: HT-unchanged fixed=0 rate=0x0 expected=0/0x0 PASS
+mt7922_rate_test: VHT-unchanged fixed=0 rate=0x0 expected=0/0x0 PASS
+mt7922_rate_test: injected-12Mbps-6GHz fixed=1 rate=0x4a expected=1/0x4a PASS
+mt7922_rate_test: noack-policy-preserved fixed=1 rate=0x4a expected=1/0x4a PASS
+mt7922_rate_test: antenna-path-0-preserved fixed=1 rate=0x4a expected=1/0x4a PASS
+mt7922_rate_test: antenna-path-1-preserved fixed=1 rate=0x4a expected=1/0x4a PASS
+mt7922_rate_test: other-chip-unchanged fixed=0 rate=0x0 expected=0/0x0 PASS
+mt7922_rate_test: 0 failures
+
+matched-baseline (module initialization status: 0)
+mt7922_rate_test: injected-12Mbps-2GHz word=2 got=0x20 reference=0x80002020
+mt7922_rate_test: injected-12Mbps-2GHz word=3 got=0x80007800 reference=0x90007800
+mt7922_rate_test: injected-12Mbps-2GHz word=6 got=0x0 reference=0x4
+mt7922_rate_test: injected-12Mbps-2GHz fixed=0 rate=0x0 expected=1/0x4a FAIL
+mt7922_rate_test: injected-12Mbps-5GHz word=2 got=0x20 reference=0x80002020
+mt7922_rate_test: injected-12Mbps-5GHz word=3 got=0x80007800 reference=0x90007800
+mt7922_rate_test: injected-12Mbps-5GHz word=6 got=0x0 reference=0x4
+mt7922_rate_test: injected-12Mbps-5GHz fixed=0 rate=0x0 expected=1/0x4a FAIL
+mt7922_rate_test: injected-multicast-12Mbps fixed=1 rate=0x0 expected=1/0x4a FAIL
+mt7922_rate_test: injected-6Mbps word=2 got=0x20 reference=0x80002020
+mt7922_rate_test: injected-6Mbps word=3 got=0x80007800 reference=0x90007800
+mt7922_rate_test: injected-6Mbps word=6 got=0x0 reference=0x4
+mt7922_rate_test: injected-6Mbps fixed=0 rate=0x0 expected=1/0x4b FAIL
+mt7922_rate_test: injected-54Mbps word=2 got=0x20 reference=0x80002020
+mt7922_rate_test: injected-54Mbps word=3 got=0x80007800 reference=0x90007800
+mt7922_rate_test: injected-54Mbps word=6 got=0x0 reference=0x4
+mt7922_rate_test: injected-54Mbps fixed=0 rate=0x0 expected=1/0x4c FAIL
+mt7922_rate_test: injected-CCK-short-preamble word=2 got=0x20 reference=0x80002020
+mt7922_rate_test: injected-CCK-short-preamble word=3 got=0x80007800 reference=0x90007800
+mt7922_rate_test: injected-CCK-short-preamble word=6 got=0x0 reference=0x4
+mt7922_rate_test: injected-CCK-short-preamble fixed=0 rate=0x0 expected=1/0x5 FAIL
+mt7922_rate_test: 8023-encapsulation-unchanged fixed=0 rate=0x0 expected=0/0x0 PASS
+mt7922_rate_test: invalid-band fixed=0 rate=0x0 expected=0/0x0 PASS
+mt7922_rate_test: injected-minrate-flag-preserved fixed=1 rate=0x0 expected=1/0x4a FAIL
+mt7922_rate_test: ordinary-minrate-unchanged fixed=1 rate=0x0 expected=1/0x0 PASS
+mt7922_rate_test: ordinary-unicast fixed=0 rate=0x0 expected=0/0x0 PASS
+mt7922_rate_test: ordinary-multicast fixed=1 rate=0x0 expected=1/0x0 PASS
+mt7922_rate_test: injected-no-rate fixed=0 rate=0x0 expected=0/0x0 PASS
+mt7922_rate_test: requested-not-injected fixed=0 rate=0x0 expected=0/0x0 PASS
+mt7922_rate_test: negative-index fixed=0 rate=0x0 expected=0/0x0 PASS
+mt7922_rate_test: index-out-of-range fixed=0 rate=0x0 expected=0/0x0 PASS
+mt7922_rate_test: missing-band fixed=0 rate=0x0 expected=0/0x0 PASS
+mt7922_rate_test: HT-unchanged fixed=0 rate=0x0 expected=0/0x0 PASS
+mt7922_rate_test: VHT-unchanged fixed=0 rate=0x0 expected=0/0x0 PASS
+mt7922_rate_test: injected-12Mbps-6GHz word=2 got=0x20 reference=0x80002020
+mt7922_rate_test: injected-12Mbps-6GHz word=3 got=0x80007800 reference=0x90007800
+mt7922_rate_test: injected-12Mbps-6GHz word=6 got=0x0 reference=0x4
+mt7922_rate_test: injected-12Mbps-6GHz fixed=0 rate=0x0 expected=1/0x4a FAIL
+mt7922_rate_test: noack-policy-preserved word=2 got=0x20 reference=0x80002020
+mt7922_rate_test: noack-policy-preserved word=3 got=0x80007801 reference=0x90007801
+mt7922_rate_test: noack-policy-preserved word=6 got=0x0 reference=0x4
+mt7922_rate_test: noack-policy-preserved fixed=0 rate=0x0 expected=1/0x4a FAIL
+mt7922_rate_test: antenna-path-0-preserved word=2 got=0x20 reference=0x80002020
+mt7922_rate_test: antenna-path-0-preserved word=3 got=0x80007800 reference=0x90007800
+mt7922_rate_test: antenna-path-0-preserved word=6 got=0x0 reference=0x4
+mt7922_rate_test: antenna-path-0-preserved fixed=0 rate=0x0 expected=1/0x4a FAIL
+mt7922_rate_test: antenna-path-1-preserved word=2 got=0x20 reference=0x80002020
+mt7922_rate_test: antenna-path-1-preserved word=3 got=0x80007800 reference=0x90007800
+mt7922_rate_test: antenna-path-1-preserved word=6 got=0x0 reference=0x4
+mt7922_rate_test: antenna-path-1-preserved fixed=0 rate=0x0 expected=1/0x4a FAIL
+mt7922_rate_test: other-chip-unchanged fixed=0 rate=0x0 expected=0/0x0 PASS
+mt7922_rate_test: 11 failures
+
+matched-fixed (module initialization status: 1)
+mt7922_rate_test: injected-12Mbps-2GHz fixed=1 rate=0x4a expected=1/0x4a PASS
+mt7922_rate_test: injected-12Mbps-5GHz fixed=1 rate=0x4a expected=1/0x4a PASS
+mt7922_rate_test: injected-multicast-12Mbps fixed=1 rate=0x4a expected=1/0x4a PASS
+mt7922_rate_test: injected-6Mbps fixed=1 rate=0x4b expected=1/0x4b PASS
+mt7922_rate_test: injected-54Mbps fixed=1 rate=0x4c expected=1/0x4c PASS
+mt7922_rate_test: injected-CCK-short-preamble fixed=1 rate=0x5 expected=1/0x5 PASS
+mt7922_rate_test: 8023-encapsulation-unchanged fixed=0 rate=0x0 expected=0/0x0 PASS
+mt7922_rate_test: invalid-band fixed=0 rate=0x0 expected=0/0x0 PASS
+mt7922_rate_test: injected-minrate-flag-preserved fixed=1 rate=0x4a expected=1/0x4a PASS
+mt7922_rate_test: ordinary-minrate-unchanged fixed=1 rate=0x0 expected=1/0x0 PASS
+mt7922_rate_test: ordinary-unicast fixed=0 rate=0x0 expected=0/0x0 PASS
+mt7922_rate_test: ordinary-multicast fixed=1 rate=0x0 expected=1/0x0 PASS
+mt7922_rate_test: injected-no-rate fixed=0 rate=0x0 expected=0/0x0 PASS
+mt7922_rate_test: requested-not-injected fixed=0 rate=0x0 expected=0/0x0 PASS
+mt7922_rate_test: negative-index fixed=0 rate=0x0 expected=0/0x0 PASS
+mt7922_rate_test: index-out-of-range fixed=0 rate=0x0 expected=0/0x0 PASS
+mt7922_rate_test: missing-band fixed=0 rate=0x0 expected=0/0x0 PASS
+mt7922_rate_test: HT-unchanged fixed=0 rate=0x0 expected=0/0x0 PASS
+mt7922_rate_test: VHT-unchanged fixed=0 rate=0x0 expected=0/0x0 PASS
+mt7922_rate_test: injected-12Mbps-6GHz fixed=1 rate=0x4a expected=1/0x4a PASS
+mt7922_rate_test: noack-policy-preserved fixed=1 rate=0x4a expected=1/0x4a PASS
+mt7922_rate_test: antenna-path-0-preserved fixed=1 rate=0x4a expected=1/0x4a PASS
+mt7922_rate_test: antenna-path-1-preserved fixed=1 rate=0x4a expected=1/0x4a PASS
+mt7922_rate_test: other-chip-unchanged fixed=0 rate=0x0 expected=0/0x0 PASS
+mt7922_rate_test: 0 failures
+
+Both source baselines reproduced 11 failures; both cleaned variants passed all 24 cases.
+
+
+Actual Linux maintainer target
+
+target-baseline-reproducer (loaded: 0)
+mt7922_rate_test: injected-12Mbps-2GHz word=2 got=0x20 reference=0x80002020
+mt7922_rate_test: injected-12Mbps-2GHz word=3 got=0x80007800 reference=0x90007800
+mt7922_rate_test: injected-12Mbps-2GHz word=6 got=0x0 reference=0x4
+mt7922_rate_test: injected-12Mbps-2GHz word=7 got=0x200000 reference=0x20c000
+mt7922_rate_test: injected-12Mbps-2GHz fixed=0 rate=0x0 expected=1/0x4a FAIL
+mt7922_rate_test: injected-12Mbps-5GHz word=2 got=0x20 reference=0x80002020
+mt7922_rate_test: injected-12Mbps-5GHz word=3 got=0x80007800 reference=0x90007800
+mt7922_rate_test: injected-12Mbps-5GHz word=6 got=0x0 reference=0x4
+mt7922_rate_test: injected-12Mbps-5GHz word=7 got=0x200000 reference=0x20c000
+mt7922_rate_test: injected-12Mbps-5GHz fixed=0 rate=0x0 expected=1/0x4a FAIL
+mt7922_rate_test: injected-multicast-12Mbps fixed=1 rate=0x0 expected=1/0x4a FAIL
+mt7922_rate_test: injected-6Mbps word=2 got=0x20 reference=0x80002020
+mt7922_rate_test: injected-6Mbps word=3 got=0x80007800 reference=0x90007800
+mt7922_rate_test: injected-6Mbps word=6 got=0x0 reference=0x4
+mt7922_rate_test: injected-6Mbps word=7 got=0x200000 reference=0x20c000
+mt7922_rate_test: injected-6Mbps fixed=0 rate=0x0 expected=1/0x4b FAIL
+mt7922_rate_test: injected-54Mbps word=2 got=0x20 reference=0x80002020
+mt7922_rate_test: injected-54Mbps word=3 got=0x80007800 reference=0x90007800
+mt7922_rate_test: injected-54Mbps word=6 got=0x0 reference=0x4
+mt7922_rate_test: injected-54Mbps word=7 got=0x200000 reference=0x20c000
+mt7922_rate_test: injected-54Mbps fixed=0 rate=0x0 expected=1/0x4c FAIL
+mt7922_rate_test: injected-CCK-short-preamble word=2 got=0x20 reference=0x80002020
+mt7922_rate_test: injected-CCK-short-preamble word=3 got=0x80007800 reference=0x90007800
+mt7922_rate_test: injected-CCK-short-preamble word=6 got=0x0 reference=0x4
+mt7922_rate_test: injected-CCK-short-preamble word=7 got=0x200000 reference=0x20c000
+mt7922_rate_test: injected-CCK-short-preamble fixed=0 rate=0x0 expected=1/0x5 FAIL
+mt7922_rate_test: 8023-encapsulation-unchanged fixed=0 rate=0x0 expected=0/0x0 PASS
+mt7922_rate_test: invalid-band fixed=0 rate=0x0 expected=0/0x0 PASS
+mt7922_rate_test: injected-minrate-flag-preserved fixed=1 rate=0x0 expected=1/0x4a FAIL
+mt7922_rate_test: ordinary-minrate-unchanged fixed=1 rate=0x0 expected=1/0x0 PASS
+mt7922_rate_test: ordinary-unicast fixed=0 rate=0x0 expected=0/0x0 PASS
+mt7922_rate_test: ordinary-multicast fixed=1 rate=0x0 expected=1/0x0 PASS
+mt7922_rate_test: injected-no-rate fixed=0 rate=0x0 expected=0/0x0 PASS
+mt7922_rate_test: requested-not-injected fixed=0 rate=0x0 expected=0/0x0 PASS
+mt7922_rate_test: negative-index fixed=0 rate=0x0 expected=0/0x0 PASS
+mt7922_rate_test: index-out-of-range fixed=0 rate=0x0 expected=0/0x0 PASS
+mt7922_rate_test: missing-band fixed=0 rate=0x0 expected=0/0x0 PASS
+mt7922_rate_test: HT-unchanged fixed=0 rate=0x0 expected=0/0x0 PASS
+mt7922_rate_test: VHT-unchanged fixed=0 rate=0x0 expected=0/0x0 PASS
+mt7922_rate_test: injected-12Mbps-6GHz word=2 got=0x20 reference=0x80002020
+mt7922_rate_test: injected-12Mbps-6GHz word=3 got=0x80007800 reference=0x90007800
+mt7922_rate_test: injected-12Mbps-6GHz word=6 got=0x0 reference=0x4
+mt7922_rate_test: injected-12Mbps-6GHz word=7 got=0x200000 reference=0x20c000
+mt7922_rate_test: injected-12Mbps-6GHz fixed=0 rate=0x0 expected=1/0x4a FAIL
+mt7922_rate_test: noack-policy-preserved word=2 got=0x20 reference=0x80002020
+mt7922_rate_test: noack-policy-preserved word=3 got=0x80007801 reference=0x90007801
+mt7922_rate_test: noack-policy-preserved word=6 got=0x0 reference=0x4
+mt7922_rate_test: noack-policy-preserved word=7 got=0x200000 reference=0x20c000
+mt7922_rate_test: noack-policy-preserved fixed=0 rate=0x0 expected=1/0x4a FAIL
+mt7922_rate_test: antenna-path-0-preserved word=2 got=0x20 reference=0x80002020
+mt7922_rate_test: antenna-path-0-preserved word=3 got=0x80007800 reference=0x90007800
+mt7922_rate_test: antenna-path-0-preserved word=6 got=0x0 reference=0x4
+mt7922_rate_test: antenna-path-0-preserved fixed=0 rate=0x0 expected=1/0x4a FAIL
+mt7922_rate_test: antenna-path-1-preserved word=2 got=0x20 reference=0x80002020
+mt7922_rate_test: antenna-path-1-preserved word=3 got=0x80007800 reference=0x90007800
+mt7922_rate_test: antenna-path-1-preserved word=6 got=0x0 reference=0x4
+mt7922_rate_test: antenna-path-1-preserved word=7 got=0x200000 reference=0x200800
+mt7922_rate_test: antenna-path-1-preserved fixed=0 rate=0x0 expected=1/0x4a FAIL
+mt7922_rate_test: other-chip-unchanged fixed=0 rate=0x0 expected=0/0x0 PASS
+mt7922_rate_test: 11 failures
+
+target-reproducer (loaded: 1)
+mt7922_rate_test: injected-12Mbps-2GHz fixed=1 rate=0x4a expected=1/0x4a PASS
+mt7922_rate_test: injected-12Mbps-5GHz fixed=1 rate=0x4a expected=1/0x4a PASS
+mt7922_rate_test: injected-multicast-12Mbps fixed=1 rate=0x4a expected=1/0x4a PASS
+mt7922_rate_test: injected-6Mbps fixed=1 rate=0x4b expected=1/0x4b PASS
+mt7922_rate_test: injected-54Mbps fixed=1 rate=0x4c expected=1/0x4c PASS
+mt7922_rate_test: injected-CCK-short-preamble fixed=1 rate=0x5 expected=1/0x5 PASS
+mt7922_rate_test: 8023-encapsulation-unchanged fixed=0 rate=0x0 expected=0/0x0 PASS
+mt7922_rate_test: invalid-band fixed=0 rate=0x0 expected=0/0x0 PASS
+mt7922_rate_test: injected-minrate-flag-preserved fixed=1 rate=0x4a expected=1/0x4a PASS
+mt7922_rate_test: ordinary-minrate-unchanged fixed=1 rate=0x0 expected=1/0x0 PASS
+mt7922_rate_test: ordinary-unicast fixed=0 rate=0x0 expected=0/0x0 PASS
+mt7922_rate_test: ordinary-multicast fixed=1 rate=0x0 expected=1/0x0 PASS
+mt7922_rate_test: injected-no-rate fixed=0 rate=0x0 expected=0/0x0 PASS
+mt7922_rate_test: requested-not-injected fixed=0 rate=0x0 expected=0/0x0 PASS
+mt7922_rate_test: negative-index fixed=0 rate=0x0 expected=0/0x0 PASS
+mt7922_rate_test: index-out-of-range fixed=0 rate=0x0 expected=0/0x0 PASS
+mt7922_rate_test: missing-band fixed=0 rate=0x0 expected=0/0x0 PASS
+mt7922_rate_test: HT-unchanged fixed=0 rate=0x0 expected=0/0x0 PASS
+mt7922_rate_test: VHT-unchanged fixed=0 rate=0x0 expected=0/0x0 PASS
+mt7922_rate_test: injected-12Mbps-6GHz fixed=1 rate=0x4a expected=1/0x4a PASS
+mt7922_rate_test: noack-policy-preserved fixed=1 rate=0x4a expected=1/0x4a PASS
+mt7922_rate_test: antenna-path-0-preserved fixed=1 rate=0x4a expected=1/0x4a PASS
+mt7922_rate_test: antenna-path-1-preserved fixed=1 rate=0x4a expected=1/0x4a PASS
+mt7922_rate_test: other-chip-unchanged fixed=0 rate=0x0 expected=0/0x0 PASS
+mt7922_rate_test: 0 failures
