@@ -1,0 +1,31 @@
+{
+  "test_date": "2026-10-14",
+  "mode": "shared",
+  "channel": 44,
+  "kernel": "7.2.5-3-omarchy",
+  "pci_id": "14c3:7922",
+  "timing_definition": "Receiver POST /Upload handler entry to HTTP 200 completion response; average speed uses saved file bytes.",
+  "tests": [
+    {
+      "content_type": "M4A/AAC audio",
+      "recording_seconds": 2668.608,
+      "saved_bytes": 43170107,
+      "wire_bytes": 42957065,
+      "transfer_seconds": 30.181,
+      "average_MB_per_second": 1.4303736456711176,
+      "saved_size_matches_sender": true,
+      "full_audio_decode": "passed",
+      "phone_report": "Sent"
+    },
+    {
+      "content_type": "PDF",
+      "pages": 9,
+      "saved_bytes": 2896475,
+      "wire_bytes": 2462099,
+      "transfer_seconds": 9.76,
+      "average_MB_per_second": 0.2967699795081967,
+      "saved_size_matches_sender": true,
+      "pdf_parse": "passed"
+    }
+  ]
+}

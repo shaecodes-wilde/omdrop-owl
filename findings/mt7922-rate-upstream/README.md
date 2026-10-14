@@ -48,6 +48,17 @@ A post-install 727,402-byte PNG upload completed in 2.63 seconds and the user co
 
 A first incoming post-install file was saved intact, but the phone stayed on Sending: the receiver returned HTTP 200 and left the connection open until its 30-second idle timeout. A separate local Omdrop receiver change adds `Connection: close` after a successful upload, retaining the existing drain for a delayed closing chunk. A loopback regression reproduced the missing close response; protocol/limits checks and targeted completion/wait/port checks passed after the existing keepalive test was updated for explicit closure. The next incoming phone transfer reported Sent. This receiver change is local to the Omdrop plugin and is not part of the mt76 patch or an upstream plugin release.
 
+## Additional recording and PDF transfers
+
+Further incoming transfers succeeded in shared mode on channel 44 with the persistent cleaned driver and the separate local receiver completion change described above:
+
+| Content | Saved size | Upload time | Average file throughput | Verification |
+| --- | --- | --- | --- | --- |
+| 44 min 28.608 s M4A/AAC recording | 43,170,107 bytes (43.17 MB) | 30.181 s | 1.43 MB/s | Sender-reported size matched; full audio stream decoded without errors; user reported Sent |
+| Nine-page PDF | 2,896,475 bytes (2.90 MB) | 9.760 s | 0.30 MB/s | Sender-reported size matched; PDF parsed successfully |
+
+Timing runs from the receiver's `/Upload` handler entry to its HTTP 200 completion response. Throughput uses saved file bytes; these are individual observations rather than a performance benchmark. See [sanitized measurements](large-transfer-results.json). Personal filenames and file contents are omitted. This adds larger-file and additional-format evidence on the same hardware; reboot and longer reliability testing remain pending.
+
 ## Independent evidence
 
 [t4t5 reported](https://github.com/t4t5/omdrop-owl/issues/14#issuecomment-6171706287) successful transfers in both directions, in active-monitor and shared modes, on another MT7922 variant (`14c3:0616`). That report applies to the [earlier experimental patch](../mt7922-channel44/README.md), not this cleaned revision. Independent testing of this exact cleaned revision has not yet been recorded.
